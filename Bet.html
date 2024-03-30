@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('back.jpg');
+            background-image: url('Sfaira.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -20,10 +20,11 @@
             margin: 0 auto;
             padding: 20px;
             text-align: center; /* Προσθήκη κεντράρισματος του κειμένου */
+            color: white; /* Αλλαγή χρώματος κειμένου σε λευκό */
         }
         .category {
             margin-bottom: 40px;
-            border: 2px solid #333; /* Προσθήκη περιγράμματος */
+            border: 2px solid #e40e0e; /* Προσθήκη περιγράμματος */
             padding: 20px;
             background-color: #f0f0f0; /* Προσθήκη φόντου */
             border-radius: 10px; /* Κυρτότητα για γυρισμένες άκρες */
@@ -38,10 +39,18 @@
             flex-wrap: wrap;
         }
         .image {
-            width: calc(20% - 10px);
+            width: 100px; /* Ορίζουμε το πλάτος των εικονιδίων */
             margin-bottom: 20px;
             cursor: pointer;
             transition: transform 0.3s ease-in-out;
+        }
+        .image img {
+            max-width: 100%; /* Κάνουμε τις εικόνες να προσαρμόζονται στον περιορισμένο χώρο */
+            height: auto;
+        }
+        .image p {
+            font-size: 12px; /* Μειώνουμε το μέγεθος του κειμένου */
+            margin-top: 5px; /* Αυξάνουμε το κενό ανάμεσα στις εικόνες και τα κείμενα */
         }
         .image:hover {
             transform: scale(1.1);
@@ -57,8 +66,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(255, 255, 255, 0.9);
         }
         .modal-content {
             margin: auto;
@@ -91,56 +99,48 @@
     <div class="container">
         <div class="info" style="margin-bottom: 20px;">
             <h1>Καλώς ήρθατε στο SfairasBets!</h1>
-            <p>Κάντε κλικ σε μια κατηγορία για να δείτε τις εικόνες.</p>
+            <p>Κάντε κλικ σε μια κατηγορία-εικονίδιο για να δείτε τα Bets.</p>
         </div>
 
         <div class="category" onclick="toggleImages('Football')">
             <h2>Ποδόσφαιρο</h2>
             <div class="image-container" id="FootballImages" style="display: none;">
-                <img class="image" src="bet1.png" alt="Image 1">
-                <img class="image" src="bet2.jpg" alt="Image 2">
+                <a href="#" class="image" onclick="openModal('bet1.png')"><img src="ball1.png" alt="Image 1"></a>
+                <a href="#" class="image" onclick="openModal('bet2.jpg')"><img src="ball1.png" alt="Image 2"></a>
+                <a href="#" class="image" onclick="openModal('bet8.jpg')"><img src="ball1.png" alt="Image 1"></a>
+                <a href="#" class="image" onclick="openModal('bet9.jpg')"><img src="ball1.png" alt="Image 1"></a>
+
                 
             </div>
-            
         </div>
-
-
-
-
+        
         <div class="category" onclick="toggleImages('Basket')">
             <h2>Μπάσκετ</h2>
             <div class="image-container" id="BasketImages" style="display: none;">
-                <img class="image" src="bet4.jpg" alt="Image 1">
+                
+                <a href="#" class="image" onclick="openModal('bet7.jpg')"><img src="ball2.png" alt="Image 1"></a>
+                <a href="#" class="image" onclick="openModal('bet4.jpg')"><img src="ball2.png" alt="Image 2"></a>
+                
                 
             </div>
-            
         </div>
 
-        
-        
-
-        
         <div class="category" onclick="toggleImages('Tennis')">
             <h2>Τέννις</h2>
             <div class="image-container" id="TennisImages" style="display: none;">
-                <img class="image" src="bet3.jpg" alt="Image 1">
-                <img class="image" src="bet6.jpg" alt="Image 1">
-                <img class="image" src="bet5.jpg" alt="Image 2">
+                <a href="#" class="image" onclick="openModal('bet3.jpg')"><img src="ball3.png" alt="Image 2"></a>
+                <a href="#" class="image" onclick="openModal('bet6.jpg')"><img src="ball3.png" alt="Image 1"></a>
+                <a href="#" class="image" onclick="openModal('bet5.jpg')"><img src="ball3.png" alt="Image 2"></a>
                 
             </div>
-           
         </div>
+
         <div class="category" onclick="toggleImages('Formula1')">
             <h2>Formula 1</h2>
             <div class="image-container" id="Formula1Images" style="display: none;">
-                
+               
             </div>
-            
-        
-
-       
-
-        
+        </div>
 
         <div class="modal" onclick="closeModal()" id="myModal">
             <span class="close">&times;</span>
@@ -151,7 +151,7 @@
     <footer style="background-color: #333; color: #fff; padding: 10px; text-align: right; font-size: 12px;">
         Παίξτε υπεύθυνα. Η σελίδα δεν φέρει ευθύνη για απώλειες περιουσιών και προορίζεται για διασκέδαση.
     </footer>
-    
+
     <script>
         var modal = document.getElementById("myModal");
         var modalImg = document.getElementById("modalImg");
@@ -166,18 +166,15 @@
             }
         }
 
+        // Συνάρτηση για το άνοιγμα του modal όταν κάνετε κλικ σε ένα αγκύρωση
+        function openModal(imageSrc) {
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+        }
+
         // Συνάρτηση για το κλείσιμο του modal όταν γίνεται κλικ στο κλείσιμο
         function closeModal() {
             modal.style.display = "none";
-        }
-
-        // Συνάρτηση για το άνοιγμα του modal και εμφάνιση πλήρους οθόνης όταν γίνεται κλικ σε μια εικόνα
-        var images = document.getElementsByClassName("image");
-        for (var i = 0; i < images.length; i++) {
-            images[i].onclick = function() {
-                modal.style.display = "block";
-                modalImg.src = this.src;
-            }
         }
     </script>
 </body>
