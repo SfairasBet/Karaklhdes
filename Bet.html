@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SfairasBets</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center; /* Προσθήκη κεντράρισματος του κειμένου */
+        }
+        .category {
+            margin-bottom: 40px;
+            border: 2px solid #333; /* Προσθήκη περιγράμματος */
+            padding: 20px;
+            background-color: #f0f0f0; /* Προσθήκη φόντου */
+            border-radius: 10px; /* Κυρτότητα για γυρισμένες άκρες */
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .image {
+            width: calc(20% - 10px);
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .image:hover {
+            transform: scale(1.1);
+        }
+        /* Zoom-in effect */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info" style="margin-bottom: 20px;">
+            <h1>Καλώς ήρθατε στο SfairasBets!</h1>
+            <p>Κάντε κλικ σε μια κατηγορία για να δείτε τις εικόνες.</p>
+        </div>
+
+        <div class="category" onclick="toggleImages('Football')">
+            <h2>Ποδόσφαιρο</h2>
+            <div class="image-container" id="FootballImages" style="display: none;">
+                <img class="image" src="bet1.png" alt="Image 1">
+                <img class="image" src="bet2.jpg" alt="Image 2">
+                
+            </div>
+            
+        </div>
+
+
+
+
+        <div class="category" onclick="toggleImages('Basket')">
+            <h2>Μπάσκετ</h2>
+            <div class="image-container" id="BasketImages" style="display: none;">
+                
+            </div>
+            
+        </div>
+
+        
+        
+
+        
+        <div class="category" onclick="toggleImages('Tennis')">
+            <h2>Τέννις</h2>
+            <div class="image-container" id="TennisImages" style="display: none;">
+                
+            </div>
+           
+        </div>
+        <div class="category" onclick="toggleImages('Formula1')">
+            <h2>Formula 1</h2>
+            <div class="image-container" id="Formula1Images" style="display: none;">
+                
+            </div>
+            
+        
+
+       
+
+        
+
+        <div class="modal" onclick="closeModal()" id="myModal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modalImg">
+        </div>
+    </div>
+
+    <footer style="background-color: #333; color: #fff; padding: 10px; text-align: right; font-size: 12px;">
+        Παίξτε υπεύθυνα. Η σελίδα δεν φέρει ευθύνη για απώλειες περιουσιών και προορίζεται για διασκέδαση.
+    </footer>
+    
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("modalImg");
+
+        // Συνάρτηση για το άνοιγμα των εικόνων όταν γίνεται κλικ στο όνομα της κατηγορίας
+        function toggleImages(category) {
+            var categoryImages = document.getElementById(category + 'Images');
+            if (categoryImages.style.display === "none") {
+                categoryImages.style.display = "flex";
+            } else {
+                categoryImages.style.display = "none";
+            }
+        }
+
+        // Συνάρτηση για το κλείσιμο του modal όταν γίνεται κλικ στο κλείσιμο
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Συνάρτηση για το άνοιγμα του modal και εμφάνιση πλήρους οθόνης όταν γίνεται κλικ σε μια εικόνα
+        var images = document.getElementsByClassName("image");
+        for (var i = 0; i < images.length; i++) {
+            images[i].onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        }
+    </script>
+</body>
+</html>
