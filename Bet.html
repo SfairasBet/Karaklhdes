@@ -20,7 +20,7 @@
             margin: 0 auto;
             padding: 20px;
             text-align: center; /* Προσθήκη κεντράρισματος του κειμένου */
-            color: white; /* Αλλαγή χρώματος κειμένου σε λευκό */
+            color: rgb(236, 8, 8); /* Αλλαγή χρώματος κειμένου σε λευκό */
         }
         .category {
             margin-bottom: 40px;
@@ -99,39 +99,98 @@
     <div class="container">
         <div class="info" style="margin-bottom: 20px;">
             <h1>Καλώς ήρθατε στο SfairasBets!</h1>
-            <p>Κάντε κλικ σε μια κατηγορία-εικονίδιο για να δείτε τις εικόνες.</p>
+            <p>Κάντε κλικ σε μια κατηγορία-εικονίδιο για να δείτε τα Bets.</p>
         </div>
 
-        <div class="category" onclick="toggleImages('Football')">
+        <div class="category" onclick="toggleSubcategories('Football')">
             <h2>Ποδόσφαιρο</h2>
-            <div class="image-container" id="FootballImages" style="display: none;">
-               <a href="#" class="image" onclick="openModal('bet1.jpg')"><img src="ball1.png" alt="Image 2"></a>
-               
+            <div class="subcategory" id="FootballLongTerm" style="display: none;">
+                <h3>Μακροχρόνια</h3>
+                <div class="image-container">
+                    
+                </div>
+            </div>
+            <div class="subcategory" id="FootballStandard" style="display: none;">
+                <h3>Στάνταρ</h3>
+                <div class="image-container">
+                    
+                </div>
+            </div>
+            <div class="subcategory" id="FootballRisk" style="display: none;">
+                <h3>Ρίσκο</h3>
+                <div class="image-container">
+                    <a href="#" class="image" onclick="openModal('bet1.jpg')"><img src="ball1.png" alt="Image 2"></a>
+                </div>
             </div>
         </div>
         
-        <div class="category" onclick="toggleImages('Basket')">
+        <div class="category" onclick="toggleSubcategories('Basket')">
             <h2>Μπάσκετ</h2>
-            <div class="image-container" id="BasketImages" style="display: none;">
-                <a href="#" class="image" onclick="openModal('bet2.jpg')"><img src="ball2.png" alt="Image 2"></a>
-                
-                
+            <div class="subcategory" id="BasketLongTerm" style="display: none;">
+                <h3>Μακροχρόνια</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Μακροχρόνια -->
+                </div>
+            </div>
+            <div class="subcategory" id="BasketStandard" style="display: none;">
+                <h3>Στάνταρ</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Στάνταρ -->
+                </div>
+            </div>
+            <div class="subcategory" id="BasketRisk" style="display: none;">
+                <h3>Ρίσκο</h3>
+                <div class="image-container">
+                    <a href="#" class="image" onclick="openModal('bet2.jpg')"><img src="ball2.png" alt="Image 2"></a>
+                </div>
             </div>
         </div>
-
-        <div class="category" onclick="toggleImages('Tennis')">
+        
+        <div class="category" onclick="toggleSubcategories('Tennis')">
             <h2>Τέννις</h2>
-            <div class="image-container" id="TennisImages" style="display: none;">
-               
+            <div class="subcategory" id="TennisLongTerm" style="display: none;">
+                <h3>Μακροχρόνια</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Μακροχρόνια -->
+                </div>
+            </div>
+            <div class="subcategory" id="TennisStandard" style="display: none;">
+                <h3>Στάνταρ</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Στάνταρ -->
+                </div>
+            </div>
+            <div class="subcategory" id="TennisRisk" style="display: none;">
+                <h3>Ρίσκο</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Ρίσκο -->
+                </div>
             </div>
         </div>
-
-        <div class="category" onclick="toggleImages('Formula1')">
+        
+        <div class="category" onclick="toggleSubcategories('Formula1')">
             <h2>Formula 1</h2>
-            <div class="image-container" id="Formula1Images" style="display: none;">
-               
+            <div class="subcategory" id="Formula1LongTerm" style="display: none;">
+                <h3>Μακροχρόνια</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Μακροχρόνια -->
+                </div>
+            </div>
+            <div class="subcategory" id="Formula1Standard" style="display: none;">
+                <h3>Στάνταρ</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Στάνταρ -->
+                </div>
+            </div>
+            <div class="subcategory" id="Formula1Risk" style="display: none;">
+                <h3>Ρίσκο</h3>
+                <div class="image-container">
+                    <!-- Εικόνες για την υποκατηγορία Ρίσκο -->
+                </div>
             </div>
         </div>
+        
+        
 
         <div class="modal" onclick="closeModal()" id="myModal">
             <span class="close">&times;</span>
@@ -156,6 +215,16 @@
                 categoryImages.style.display = "none";
             }
         }
+        function toggleSubcategories(category) {
+            var subcategories = document.querySelectorAll('.subcategory');
+            subcategories.forEach(function(subcategory) {
+            if (subcategory.id.startsWith(category)) {
+            subcategory.style.display = "block";
+            } else {
+            subcategory.style.display = "none";
+            }
+        });
+        }       
 
         // Συνάρτηση για το άνοιγμα του modal όταν κάνετε κλικ σε ένα αγκύρωση
         function openModal(imageSrc) {
