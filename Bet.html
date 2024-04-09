@@ -243,15 +243,19 @@
             }
         }
         function toggleSubcategories(category) {
-            var subcategories = document.querySelectorAll('.subcategory');
-            subcategories.forEach(function(subcategory) {
-            if (subcategory.id.startsWith(category)) {
-            subcategory.style.display = "block";
+    var subcategories = document.querySelectorAll('.subcategory');
+    subcategories.forEach(function(subcategory) {
+        if (subcategory.id.startsWith(category)) {
+            if (subcategory.style.display === "none") {
+                subcategory.style.display = "block";
             } else {
-            subcategory.style.display = "none";
+                subcategory.style.display = "none";
             }
-        });
-        }       
+        } else {
+            subcategory.style.display = "none";
+        }
+    });
+}
         function showText() {
             var hiddenText = document.getElementById("hiddenText");
             if (hiddenText.style.display === "none") {
